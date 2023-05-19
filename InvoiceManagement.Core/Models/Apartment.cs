@@ -14,6 +14,7 @@ namespace InvoiceManagement.Core.Models
         public int FloorNumber { get; set; }
         public int ApartmentNumber { get; set; }
 
+        public int OwnerOrTenantId { get; set; }
         public User OwnerOrTenant { get; set; }
         public ICollection<User> Users { get; set; }
         public ICollection<Dues> Dues { get; set; }
