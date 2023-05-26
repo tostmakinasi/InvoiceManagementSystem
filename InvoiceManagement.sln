@@ -5,7 +5,9 @@ VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoiceManagement.Core", "InvoiceManagement.Core\InvoiceManagement.Core.csproj", "{1B317327-E2C0-4F3E-A896-BCB2AC1D621E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceManagement.Repository", "InvoiceManagement.Repository\InvoiceManagement.Repository.csproj", "{6BBA4A20-5683-40D2-A061-3C87179160F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoiceManagement.Repository", "InvoiceManagement.Repository\InvoiceManagement.Repository.csproj", "{6BBA4A20-5683-40D2-A061-3C87179160F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceManagement.Services", "InvoiceManagement.Services\InvoiceManagement.Services.csproj", "{A4E61A42-97CE-4FC7-A5E5-5FE8B1D6FCF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{6BBA4A20-5683-40D2-A061-3C87179160F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BBA4A20-5683-40D2-A061-3C87179160F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BBA4A20-5683-40D2-A061-3C87179160F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4E61A42-97CE-4FC7-A5E5-5FE8B1D6FCF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4E61A42-97CE-4FC7-A5E5-5FE8B1D6FCF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4E61A42-97CE-4FC7-A5E5-5FE8B1D6FCF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4E61A42-97CE-4FC7-A5E5-5FE8B1D6FCF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
