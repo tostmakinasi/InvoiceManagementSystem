@@ -18,9 +18,7 @@ namespace InvoiceManagement.Repository
 
         public DbSet<Apartment> Apartments { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<Dues> Dues { get; set; }
         public DbSet<Invoce> Invoces { get; set; }
-        public DbSet<Payment> Payments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
