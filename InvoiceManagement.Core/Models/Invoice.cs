@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InvoiceManagement.Core.Models
 {
-    public class Invoce:BaseModel
+    public class Invoice:BaseModel
     {
         public InvoceType InvoceType { get; set; }
         public decimal Amount { get; set; }

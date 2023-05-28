@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InvoiceManagement.Core.Models
+namespace InvoiceManagement.Core.DTOs
 {
-    public class Apartment:BaseModel
+    public class ApartmentDto:BaseModelDto
     {
         public string Block { get; set; }
         public bool IsOccupied { get; set; }
@@ -15,8 +15,5 @@ namespace InvoiceManagement.Core.Models
         public int ApartmentNumber { get; set; }
 
         public int OwnerOrTenantId { get; set; }
-        public User OwnerOrTenant { get; set; }
-        public ICollection<User> Users { get; set; }
-        public ICollection<Invoice> Invoces { get; set; }
     }
 }
