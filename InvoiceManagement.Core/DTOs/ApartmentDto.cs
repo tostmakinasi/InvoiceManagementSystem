@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InvoiceManagement.Core.DTOs
+﻿namespace InvoiceManagement.Core.DTOs
 {
-    public class ApartmentDto:BaseModelDto
+    public class ApartmentDto : BaseModelDto
     {
         public string Block { get; set; }
         public bool IsOccupied { get; set; }

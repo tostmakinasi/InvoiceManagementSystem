@@ -1,11 +1,6 @@
 ﻿using InvoiceManagement.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InvoiceManagement.Repository.Configurations
 {
@@ -16,9 +11,10 @@ namespace InvoiceManagement.Repository.Configurations
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.CreatedDate).HasDefaultValue(DateTime.Now);
-            builder.Property(x=> x.IsDeleted).HasDefaultValue(false);
+            builder.Property(x => x.IsDeleted).HasDefaultValue(false);
 
             builder.HasQueryFilter(x => x.IsDeleted == false);
+
         }
 
     }

@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace InvoiceManagement.Core.Models
 {
-    public class User:BaseModel
+    public class TopUser : BaseModel
     {
-        public string FullName { get; set; }
+
+    }
+    public class User : IdentityUser
+    {
+        public string FirsName { get; set; }
+        public string LastName { get; set; }
         public string IdentificationNumber { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public string VehiclePlateNumber { get; set; }
+        public string CarLicensePlate { get; set; }
 
 
         public int ApartmentId { get; set; }

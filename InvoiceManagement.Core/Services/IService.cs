@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using InvoiceManagement.Core.DTOs;
+using InvoiceManagement.Core.Models;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InvoiceManagement.Core.Services
 {
-    public interface IService<T> where T : class
+    public interface IService<Entity, Dto> where Entity : BaseModel where Dto : class
     {
-        Task<T> GetByIdAsync(int id);
-        Task<IEnumerable<T>> GetAllAsync();
-        IQueryable<T> Where(Expression<Func<T, bool>> expression);
-        Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
-        Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> items);
-        Task<T> AddAsync(T entity);
-        Task UpdateAsync(T entity);
-        Task RemoveAsync(T entity);
-        Task RemoveRangeAsync(IEnumerable<T> items);
+        Task<CustomResponseDto<Dto>> AddAsync(Dto dto);
+        Task<CustomResponseDto<IEnumerable<Dto>>> AddRangeAsync(IEnumerable<Dto> dtoList);
+        Task<CustomResponseDto<bool>> AnyAsync(Expression<Func<Entity, bool>> expression);
+        Task<CustomResponseDto<IEnumerable<Dto>>> GetAllAsync();
+        Task<CustomResponseDto<Dto>> GetByIdAsync(int id);
+        Task<CustomResponseDto<NoContentDto>> RemoveAsync(int id);
+        Task<CustomResponseDto<NoContentDto>> RemoveRangeAsync(IEnumerable<int> idList);
+        Task<CustomResponseDto<NoContentDto>> UpdateAsync(Dto dto);
+        Task<CustomResponseDto<IEnumerable<Dto>>> Where(Expression<Func<Entity, bool>> expression);
     }
 }
