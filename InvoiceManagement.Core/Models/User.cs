@@ -2,7 +2,7 @@
 
 namespace InvoiceManagement.Core.Models
 {
-    public class User : BaseModel
+    public class User : IdentityUser
     {
         public string FirsName { get; set; }
         public string LastName { get; set; }

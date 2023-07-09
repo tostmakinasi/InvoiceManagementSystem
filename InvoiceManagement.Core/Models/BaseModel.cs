@@ -2,7 +2,7 @@
 
 namespace InvoiceManagement.Core.Models
 {
-    public abstract class BaseModel
+    public abstract class BaseModel:IEntity
     {
         public int Id { get; set; }
         public DateTime CreatedDate { get; set; }
