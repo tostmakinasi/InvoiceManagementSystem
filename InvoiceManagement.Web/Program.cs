@@ -1,7 +1,17 @@
+using InvoiceManagement.Core.Models;
+using InvoiceManagement.Repository;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"));
+});
+builder.Services.AddIdentity<User,Role>().AddEntityFrameworkStores<AppDbContext>();
+
 
 var app = builder.Build();
 
