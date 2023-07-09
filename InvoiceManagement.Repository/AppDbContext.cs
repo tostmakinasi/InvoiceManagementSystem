@@ -1,10 +1,11 @@
 ﻿using InvoiceManagement.Core.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace InvoiceManagement.Repository
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<User,Role,string>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -12,8 +13,8 @@ namespace InvoiceManagement.Repository
         }
 
         public DbSet<Apartment> Apartments { get; set; }
-        public DbSet<User> Users { get; set; }
         public DbSet<Invoice> Invoces { get; set; }
+        public DbSet<InvoiceType> InvoiceTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -43,21 +44,26 @@ namespace InvoiceManagement.Repository
         {
             foreach (var entry in ChangeTracker.Entries())
             {
-                switch (entry.State)
+                if (entry.Entity is BaseModel entityReferance)
                 {
-                    case EntityState.Deleted:
-                        entry.State = EntityState.Modified;
-                        entry.CurrentValues[nameof(BaseModel.IsDeleted)] = true;
-                        entry.CurrentValues[nameof(BaseModel.UpdatedDate)] = DateTime.Now;
-                        break;
-                    case EntityState.Modified:
-                        entry.CurrentValues[nameof(BaseModel.UpdatedDate)] = DateTime.Now;
-                        break;
-                    case EntityState.Added:
-                        entry.CurrentValues[nameof(BaseModel.CreatedDate)] = DateTime.Now;
-                        break;
-                    default:
-                        break;
+                    switch (entry.State)
+                    {
+                        case EntityState.Deleted:
+                            entry.State = EntityState.Modified;
+                            entityReferance.IsDeleted = true;
+                            entityReferance.UpdatedDate = DateTime.Now;
+                            Entry(entityReferance).Property(x => x.CreatedDate).IsModified = false;
+                            break;
+                        case EntityState.Modified:
+                            entityReferance.UpdatedDate = DateTime.Now;
+                            Entry(entityReferance).Property(x => x.CreatedDate).IsModified = false;
+                            break;
+                        case EntityState.Added:
+                            entityReferance.CreatedDate = DateTime.Now;
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
