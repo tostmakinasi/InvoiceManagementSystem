@@ -1,0 +1,34 @@
+﻿
+
+@{
+    ViewData["Title"] = "ApartmentList";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@model List<ApartmentViewModel>
+
+<div class="row">
+    <div class="text-center ">
+        <h1 class="fw-bold text">Kullanıcı Bilgileri </h1>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th>Apartman Adı</th>
+                    <th>Bulunduğu Kat</th>
+                    <th>Kapı Numarası</th>
+                    <th>Durumu</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model){
+                    <tr>
+                        <td>@item.Block</td>
+                        <td>@item.FloorNumber</td>
+                        <td>@item.ApartmentNumber</td>
+                        <td>@(item.IsAvailable? "Boş" : "Dolu")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

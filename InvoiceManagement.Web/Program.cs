@@ -1,5 +1,13 @@
 using InvoiceManagement.Core.Models;
+using InvoiceManagement.Core.Repositories;
+using InvoiceManagement.Core.Services;
+using InvoiceManagement.Core.UnitOfWorks;
 using InvoiceManagement.Repository;
+using InvoiceManagement.Repository.Repositories;
+using InvoiceManagement.Repository.UnitOfWorks;
+using InvoiceManagement.Services.Mapping;
+using InvoiceManagement.Services.Services;
+
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +19,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"));
 });
 builder.Services.AddIdentity<User,Role>().AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.AddAutoMapper(typeof(MapProfile));
+
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
 
 
 var app = builder.Build();
@@ -29,6 +43,11 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",
