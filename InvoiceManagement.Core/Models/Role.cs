@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InvoiceManagement.Core.Models
 {
-    public class Role:IdentityRole
+    public class Role:IdentityRole,IEntity
     {
     }
 }

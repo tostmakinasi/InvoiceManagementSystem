@@ -5,13 +5,16 @@ namespace InvoiceManagement.Core.Models
     public class Apartment : BaseModel
     {
         public string Block { get; set; }
-        public bool IsOccupied { get; set; }
-        public HouseType HouseType { get; set; }
+        public bool IsAvailable { get; set; }
         public int FloorNumber { get; set; }
         public int ApartmentNumber { get; set; }
 
-        public int UserId { get; set; }
-        public User User { get; set; }
-        public ICollection<Invoice> Invoces { get; set; }
+        //Foreign Key
+        public int HouseTypeId { get; set; }
+        public virtual HouseType HouseType { get; set; }
+
+        //Navigation
+        public virtual User User { get; set; }
+        public virtual ICollection<Invoice> Invoces { get; set; }
     }
 }
