@@ -11,8 +11,8 @@ namespace InvoiceManagement.Repository.Configurations
         {
             base.Configure(builder);
             builder.Property(x => x.Block).IsRequired();
-            builder.Property(x => x.IsOccupied).HasDefaultValue(false).IsRequired();
-            builder.Property(x => x.HouseType).HasDefaultValue(HouseType.Studio).IsRequired();
+            builder.Property(x => x.IsAvailable).HasDefaultValue(false).IsRequired();
+           
             builder.Property(x => x.FloorNumber).IsRequired();
             builder.Property(x => x.ApartmentNumber).IsRequired();
 
