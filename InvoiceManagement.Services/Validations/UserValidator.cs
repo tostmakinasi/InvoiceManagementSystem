@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using InvoiceManagement.Core.DTOs;
+using InvoiceManagement.Core.ViewModels;
 
 namespace InvoiceManagement.Services.Validations
 {
-    public class UserValidator : AbstractValidator<UserDto>
+    public class UserValidator : AbstractValidator<UserViewModel>
     {
         public UserValidator()
         {
