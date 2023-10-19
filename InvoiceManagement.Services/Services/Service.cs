@@ -9,7 +9,7 @@ namespace InvoiceManagement.Services.Services
 {
     public class Service<T> : IService<T> where T : BaseModel
     {
-        protected readonly IGenericRepository<T> _repository;
+        private readonly IGenericRepository<T> _repository;
         protected readonly IUnitOfWork _unitOfWork;
 
         public Service(IUnitOfWork unitOfWork, IGenericRepository<T> repository)
