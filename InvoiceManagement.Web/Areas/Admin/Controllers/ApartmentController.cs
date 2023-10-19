@@ -9,22 +9,19 @@ namespace InvoiceManagement.Web.Areas.Admin.Controllers
     [Area("Admin")]
     public class ApartmentController : Controller
     {
-        private readonly IService<Apartment> _service;
-        private readonly IMapper _mapper;
+        private readonly IApartmentService _service;
+   
 
-        public ApartmentController(IService<Apartment> service, IMapper mapper)
+        public ApartmentController(IApartmentService service)
         {
             _service = service;
-            _mapper = mapper;
         }
 
         public async Task<IActionResult> ApartmentList()
         {
-            var apartments = await _service.GetAllAsync();
+            var apartments = await _service.GetApartmentsWithListViewModel();
 
-            var apartmentsViewModel = _mapper.Map<IEnumerable<ApartmentViewModel>>(apartments);
-
-            return View(apartmentsViewModel);
+            return View(apartments);
         }
     }
 }

@@ -5,18 +5,21 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-@model List<ApartmentViewModel>
+@model List<ApartmentListViewModel>
 
 <div class="row">
     <div class="text-center ">
-        <h1 class="fw-bold text">Kullanıcı Bilgileri </h1>
+        <h1 class="fw-bold text">Daire Listesi </h1>
         <table class="table table-dark">
             <thead>
                 <tr>
                     <th>Apartman Adı</th>
-                    <th>Bulunduğu Kat</th>
+                    <th>Daire Katı</th>
                     <th>Kapı Numarası</th>
+                    <th>Ev Tipi</th>
                     <th>Durumu</th>
+                    <th>Kullanıcı</th>
+                    <th>Fatura Sayısı</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,7 +28,11 @@
                         <td>@item.Block</td>
                         <td>@item.FloorNumber</td>
                         <td>@item.ApartmentNumber</td>
-                        <td>@(item.IsAvailable? "Boş" : "Dolu")</td>
+                        <td>@item.HouseType</td>
+                        <td>@item.IsAvailable</td>
+                        <td>@item.UserFullName</td>
+                        <td>@item.InvoicesCount</td>
+
                     </tr>
                 }
             </tbody>
