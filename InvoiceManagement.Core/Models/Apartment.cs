@@ -15,6 +15,6 @@ namespace InvoiceManagement.Core.Models
 
         //Navigation
         public virtual User User { get; set; }
-        public virtual ICollection<Invoice> Invoces { get; set; }
+        public virtual ICollection<Invoice> Invoices { get; set; }
     }
 }
