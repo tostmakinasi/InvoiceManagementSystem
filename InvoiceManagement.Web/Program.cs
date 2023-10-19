@@ -7,7 +7,7 @@ using InvoiceManagement.Repository.Repositories;
 using InvoiceManagement.Repository.UnitOfWorks;
 using InvoiceManagement.Services.Mapping;
 using InvoiceManagement.Services.Services;
-
+using InvoiceManagement.Web.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,9 +22,7 @@ builder.Services.AddIdentity<User,Role>().AddEntityFrameworkStores<AppDbContext>
 
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
-builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
+builder.Services.AddScopedWithExtension();
 
 
 var app = builder.Build();

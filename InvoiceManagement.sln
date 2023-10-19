@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoiceManagement.Repositor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoiceManagement.Services", "InvoiceManagement.Services\InvoiceManagement.Services.csproj", "{A4E61A42-97CE-4FC7-A5E5-5FE8B1D6FCF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceManagement.Web", "InvoiceManagement.Web\InvoiceManagement.Web.csproj", "{D2FEDA06-9901-49EC-B4DF-BED710FC272F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoiceManagement.Web", "InvoiceManagement.Web\InvoiceManagement.Web.csproj", "{D2FEDA06-9901-49EC-B4DF-BED710FC272F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
