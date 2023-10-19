@@ -7,7 +7,7 @@ namespace InvoiceManagement.Repository.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly DbSet<T> _dbSet;
+        protected readonly DbSet<T> _dbSet;
         protected readonly AppDbContext _context;
 
         public GenericRepository(AppDbContext context)
