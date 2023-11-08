@@ -14,7 +14,7 @@ namespace InvoiceManagement.Core.Services
         Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> items);
         Task<T> AddAsync(T entity);
         Task UpdateAsync(T entity);
-        Task RemoveAsync(T entity);
+        Task RemoveAsync(int id);
         Task RemoveRangeAsync(IEnumerable<T> items);
     }
 }

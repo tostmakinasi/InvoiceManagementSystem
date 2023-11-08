@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ using System.Xml.Linq;
 
 namespace InvoiceManagement.Core.ViewModels
 {
-    public class SignUpViewModel
+    public class AccountCompletionViewModel
     {
         [Required(ErrorMessage ="İsim alanı zorunludur")]
         [Display(Name = "İsim")]
@@ -25,15 +26,11 @@ namespace InvoiceManagement.Core.ViewModels
         public string IdentificationNumber { get; set; }
 
         
-        [Display(Name = "Plaka Numarası")]
+        [Display(Name = "Plaka Numarası :")]
         public string CarLicensePlate { get; set; }
-        [Required(ErrorMessage ="Kullanıcı için bir Daire seçmelisiniz.")]
-        public int ApartmentId { get; set; }
 
-
-        [Required(ErrorMessage = "Kullanıcı adı zorunludur.")]
-        [Display(Name = "Kullanıcı Adı :")]
-        public string UserName { get; set; }
+        [Display(Name ="Daire :")]
+         public string Apartment{ get; set; }
 
         [EmailAddress(ErrorMessage = "Email formatı yanlıştır.")]
         [Required(ErrorMessage = "Email alanı zorunludur.")]
