@@ -21,11 +21,11 @@ namespace InvoiceManagement.Repository.Seeds
                 new Apartment { Id = 5, ApartmentNumber = 5, Block = "Duru Apt.", CreatedDate = DateTime.Now, FloorNumber = 2, HouseTypeId = 3, IsAvailable = true },
                 new Apartment { Id = 6, ApartmentNumber = 6, Block = "Duru Apt.", CreatedDate = DateTime.Now, FloorNumber = 2, HouseTypeId = 3, IsAvailable = true },
                 new Apartment { Id = 7, ApartmentNumber = 7, Block = "Duru Apt.", CreatedDate = DateTime.Now, FloorNumber = 3, HouseTypeId = 3, IsAvailable = true },
-                new Apartment { Id = 8, ApartmentNumber = 7, Block = "Duru Apt.", CreatedDate = DateTime.Now, FloorNumber = 3, HouseTypeId = 3, IsAvailable = true },
-                new Apartment { Id = 9, ApartmentNumber = 7, Block = "Duru Apt.", CreatedDate = DateTime.Now, FloorNumber = 4, HouseTypeId = 3, IsAvailable = true },
-                new Apartment { Id = 10, ApartmentNumber = 7, Block = "Duru Apt.", CreatedDate = DateTime.Now, FloorNumber = 4, HouseTypeId = 3, IsAvailable = true },
-                new Apartment { Id = 11, ApartmentNumber = 7, Block = "Duru Apt.", CreatedDate = DateTime.Now, FloorNumber = 5, HouseTypeId = 3, IsAvailable = true },
-                new Apartment { Id = 12, ApartmentNumber = 7, Block = "Duru Apt.", CreatedDate = DateTime.Now, FloorNumber = 5, HouseTypeId = 3, IsAvailable = true });
+                new Apartment { Id = 8, ApartmentNumber = 8, Block = "Duru Apt.", CreatedDate = DateTime.Now, FloorNumber = 3, HouseTypeId = 3, IsAvailable = true },
+                new Apartment { Id = 9, ApartmentNumber = 9, Block = "Duru Apt.", CreatedDate = DateTime.Now, FloorNumber = 4, HouseTypeId = 3, IsAvailable = true },
+                new Apartment { Id = 10, ApartmentNumber = 10, Block = "Duru Apt.", CreatedDate = DateTime.Now, FloorNumber = 4, HouseTypeId = 3, IsAvailable = true },
+                new Apartment { Id = 11, ApartmentNumber = 11, Block = "Duru Apt.", CreatedDate = DateTime.Now, FloorNumber = 5, HouseTypeId = 3, IsAvailable = true },
+                new Apartment { Id = 12, ApartmentNumber = 12, Block = "Duru Apt.", CreatedDate = DateTime.Now, FloorNumber = 5, HouseTypeId = 3, IsAvailable = true });
         }
     }
   
