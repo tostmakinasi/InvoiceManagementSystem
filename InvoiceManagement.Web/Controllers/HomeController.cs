@@ -22,6 +22,14 @@ namespace InvoiceManagement.Web.Controllers
         {
             return View();
         }
+        
+        public IActionResult AccountCompletion(string userId, string token) {
+
+            TempData["userId"] = userId;
+            TempData["token"] = token;
+
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
