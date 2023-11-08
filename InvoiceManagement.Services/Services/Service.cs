@@ -51,8 +51,9 @@ namespace InvoiceManagement.Services.Services
             return hasData;
         }
 
-        public async Task RemoveAsync(T entity)
+        public async Task RemoveAsync(int id)
         {
+            var entity = await _repository.GetByIdAsync(id);
             _repository.Remove(entity);
             await _unitOfWork.CommitChangesAsync();
         }

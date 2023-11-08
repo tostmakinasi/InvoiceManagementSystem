@@ -4,6 +4,7 @@ using InvoiceManagement.Core.Repositories;
 using InvoiceManagement.Core.Services;
 using InvoiceManagement.Core.UnitOfWorks;
 using InvoiceManagement.Core.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,38 @@ namespace InvoiceManagement.Services.Services
         {
             _repository = repository;
             _mapper = mapper;
+        }
+
+        public async Task ChangeAvaibleStatus(int id, bool isAvaible)
+        {
+            var apartment = await _repository.GetByIdAsync(id);
+            apartment.IsAvailable = isAvaible;
+            _repository.Update(apartment);
+            await _unitOfWork.CommitChangesAsync();
+        }
+
+        public async Task<bool> CreateAsync(ApartmentCreateViewModel viewModel)
+        {
+
+            var isApartmentExist = await _repository.AnyAsync(x=> x.ApartmentNumber == viewModel.ApartmentNumber && x.Block == viewModel.Block);
+
+            if (isApartmentExist)
+                return true;
+
+            var apartment = _mapper.Map<Apartment>(viewModel);
+            await _repository.AddAsync(apartment);
+
+            await _unitOfWork.CommitChangesAsync();
+            return false;
+        }
+
+        public async Task<List<ApartmentSelectionListViewModel>> GetApartmentSelectionListViewModels()
+        {
+            var apartments = await _repository.Where(x=> x.IsAvailable == true).ToListAsync();
+
+            var viewModelList = _mapper.Map<List<ApartmentSelectionListViewModel>>(apartments);
+
+            return viewModelList;
         }
 
         public async Task<List<ApartmentListViewModel>> GetApartmentsWithListViewModel()
