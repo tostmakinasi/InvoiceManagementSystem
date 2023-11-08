@@ -8,8 +8,18 @@
 @model List<ApartmentListViewModel>
 
 <div class="row">
+    <div>
+
+    </div>
     <div class="text-center ">
         <h1 class="fw-bold text">Daire Listesi </h1>
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+        
         <table class="table table-dark">
             <thead>
                 <tr>
@@ -20,6 +30,7 @@
                     <th>Durumu</th>
                     <th>Kullanıcı</th>
                     <th>Fatura Sayısı</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -32,7 +43,9 @@
                         <td>@item.IsAvailable</td>
                         <td>@item.UserFullName</td>
                         <td>@item.InvoicesCount</td>
-
+                        <td>
+                            <a class="btn btn-danger" asp-controller="Apartment" asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                        </td>
                     </tr>
                 }
             </tbody>

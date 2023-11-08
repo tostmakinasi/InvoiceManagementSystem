@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@model ApartmentCreateViewModel
+@section Scripts{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+
+
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2>Daire Kaydı</h2>
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-info" role="alert">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+        <div asp-validation-summary=ModelOnly class="alert alert-danger" role="alert">
+        </div>
+
+        <form method="post">
+
+            <div class="row mb-3">
+                <label for="HouseTypeId" class="col-md-4 col-form-label" asp-for="HouseTypeId"></label>
+                <div class="col-md-8">
+                    <select asp-for="HouseTypeId" asp-items="ViewBag.houseTypes" class="form-control" asp-validation-for="HouseTypeId">
+                        <option value="0">Daire Türü Seçiniz</option>
+                    </select>
+                    <span class="text-danger" asp-validation-for="HouseTypeId"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="Block" class="col-md-4 col-form-label" asp-for="Block"></label>
+                <div class="col-md-8">
+                    <input asp-for="Block" class="form-control">
+                    <span class="text-danger" asp-validation-for="Block"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="FloorNumber" class="col-md-4 col-form-label" asp-for="FloorNumber"></label>
+                <div class="col-md-8">
+                    <input asp-for="FloorNumber" class="form-control">
+                    <span class="text-danger" asp-validation-for="FloorNumber"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="ApartmentNumber" class="col-md-4 col-form-label" asp-for="ApartmentNumber"></label>
+                <div class="col-md-8">
+                    <input asp-for="ApartmentNumber" class="form-control">
+                    <span class="text-danger" asp-validation-for="ApartmentNumber"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-md-4" asp-for="IsAvailable"></label>
+                <div class="col-md-8">
+                    <div class="form-check">
+                        <input asp-for="IsAvailable" class="form-check-input" type="checkbox">
+                        <label class="form-check-label"> Daire Şuan Boş </label>
+                    </div>
+                </div>
+            </div>
+          
+            <div class="row mb-3">
+
+                <div class="col-md-8 offset-md-4">
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+

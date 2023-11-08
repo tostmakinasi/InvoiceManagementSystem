@@ -1,4 +1,5 @@
 using InvoiceManagement.Core.Models;
+using InvoiceManagement.Core.OptionsModels;
 using InvoiceManagement.Core.Repositories;
 using InvoiceManagement.Core.Services;
 using InvoiceManagement.Core.UnitOfWorks;
@@ -8,6 +9,7 @@ using InvoiceManagement.Repository.UnitOfWorks;
 using InvoiceManagement.Services.Mapping;
 using InvoiceManagement.Services.Services;
 using InvoiceManagement.Web.Extensions;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,12 +20,15 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"));
 });
-builder.Services.AddIdentity<User,Role>().AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddIdentity<User,Role>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders(); 
 
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
 builder.Services.AddScopedWithExtension();
 
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 var app = builder.Build();
 
@@ -41,6 +46,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
 
 
 app.MapControllerRoute(
