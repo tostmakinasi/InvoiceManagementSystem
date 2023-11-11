@@ -19,7 +19,7 @@ namespace InvoiceManagement.Services.Services
         {
             _emailSettings = options.Value;
         }
-        public async Task SendAccountCompletionEmail(string link, string email)
+        public async Task SendAccountCompletionEmail(string link, string email, string userFullName, string username, string password)
         {
             var smtpClient = new SmtpClient();
 
@@ -35,9 +35,20 @@ namespace InvoiceManagement.Services.Services
             mailMessage.From = new MailAddress(_emailSettings.Email);
             mailMessage.To.Add(email);
 
-            mailMessage.Subject = _baseSubject + "Kullanıcı aktivasyon linki";
-            mailMessage.Body = @$"<h4>Kullanıcı kaydınızı tamamlamak için aşağıdaki linke tıklayınız.</h4>
-                                 <p><a href ='{link}'> Kullanıcı aktivasyon link </a></p>";
+            mailMessage.Subject = _baseSubject + "Kullanıcı Kayıt Bilgileriniz";
+            mailMessage.Body = @$"
+<h2 style=""color: #3498db; font-weight: bold;"">Kayıt Tamamlandı</h2>
+
+    <p>Merhaba {userFullName},</p>
+
+    <p>Kaydınız başarıyla tamamlandı. İşte hesap bilgileriniz:</p>
+
+    <ul>
+        <li><strong>Kullanıcı Adı:</strong> {username}</li>
+        <li><strong>Şifre:</strong> {password}</li>
+    </ul>
+
+    <p>İyi günler dileriz!</p>";
             mailMessage.IsBodyHtml = true;
 
             await smtpClient.SendMailAsync(mailMessage);
