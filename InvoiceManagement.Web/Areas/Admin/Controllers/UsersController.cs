@@ -27,12 +27,12 @@ namespace InvoiceManagement.Web.Areas.Admin.Controllers
 
         public async Task<IActionResult> IndexAsync()
         {
-            var userList = await _userService.GetUserViewModelList();
+            var userList = await _userService.GetUserViewModelListAsync();
 
             return View(userList);
         }
 
-        public async Task<IActionResult> PreRegistration()
+        public async Task<IActionResult> Registration()
         {
             ViewBag.apartments =  new SelectList(await _apartmentService.GetApartmentSelectionListViewModels(), nameof(ApartmentSelectionListViewModel.Id),nameof(ApartmentSelectionListViewModel.AparmnentAddress));
             
@@ -40,23 +40,20 @@ namespace InvoiceManagement.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PreRegistration(UserPreRegistrationViewModel model)
+        public async Task<IActionResult> Registration(UserRegistrationViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View();
             }
 
-            var result = await _userService.PreRegistration(model);
+            var result = await _userService.RegistrationAsync(model);
 
             if (result.Succeeded)
             {
-                string registrationLink = Url.Action("AccountCompletion", "Home", new { Area="", userId = result.Data.Id, Token = result.Data.Token }, HttpContext.Request.Scheme); 
-
-                await _emailService.SendAccountCompletionEmail(registrationLink, model.Email);
 
                 TempData["SuccessMessage"] = "Üye Ön Kaydı başarıyla gerçekleşmiştir.";
-                return RedirectToAction(nameof(UsersController.PreRegistration));
+                return RedirectToAction(nameof(UsersController.Registration));
             }
 
             ModelState.AddModelErrorList(result.Errors);
@@ -65,7 +62,7 @@ namespace InvoiceManagement.Web.Areas.Admin.Controllers
 
         public async Task<IActionResult> Delete(string id)
         {
-            await _userService.DeleteUser(id);
+            await _userService.DeleteUserAsync(id);
 
             return RedirectToAction(nameof(Index));
         }
