@@ -1,4 +1,8 @@
-﻿using InvoiceManagement.Web.Models;
+﻿using InvoiceManagement.Core.Services;
+using InvoiceManagement.Core.ViewModels;
+using InvoiceManagement.Web.Extensions;
+using InvoiceManagement.Web.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,11 +10,11 @@ namespace InvoiceManagement.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IUserService _userService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IUserService userService)
         {
-            _logger = logger;
+            _userService = userService;
         }
 
         public IActionResult Index()
@@ -22,14 +26,28 @@ namespace InvoiceManagement.Web.Controllers
         {
             return View();
         }
-        
-        public IActionResult AccountCompletion(string userId, string token) {
+        public IActionResult SignIn()
+        {
+            return View();
+        }
 
-            TempData["userId"] = userId;
-            TempData["token"] = token;
+        [HttpPost]
+        public async Task<IActionResult> SignIn(SignInViewModel model,string? returnUrl = null)
+        {
+            returnUrl ??= Url.Action("Index", "Home");
+
+            var result = await _userService.SignInAsync(model);
+
+            if(result.Succeeded)
+            {
+                return Redirect(returnUrl);
+            }
+
+            ModelState.AddModelErrorList(result.Errors);
 
             return View();
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
