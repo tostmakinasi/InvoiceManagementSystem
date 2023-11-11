@@ -11,6 +11,7 @@ using InvoiceManagement.Services.Services;
 using InvoiceManagement.Web.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +21,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"));
 });
-builder.Services.AddIdentity<User,Role>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders(); 
+
+builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Directory.GetCurrentDirectory()));
+builder.Services.AddIdentityWithExtension();
+builder.Services.AddCookieWithExtension();
 
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
@@ -28,7 +32,7 @@ builder.Services.AddScopedWithExtension();
 
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 
-builder.Services.AddScoped<IEmailService, EmailService>();
+
 
 var app = builder.Build();
 
