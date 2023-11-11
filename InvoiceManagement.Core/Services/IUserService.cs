@@ -6,10 +6,15 @@ namespace InvoiceManagement.Core.Services
 {
     public interface IUserService
     {
-        Task<List<UserViewModel>> GetUserViewModelList();
+        Task<List<UserViewModel>> GetUserViewModelListAsync();
 
-        Task<CustomServiceResult<TokenResult>> PreRegistration(UserPreRegistrationViewModel model);
+        Task<CustomServiceResult<NoContentResult>> RegistrationAsync(UserRegistrationViewModel model);
 
-        Task DeleteUser(string id);
+        Task<CustomServiceResult<NoContentResult>> SignInAsync(SignInViewModel model);
+
+        Task DeleteUserAsync(string id);
+
+        Task SignOutAsync();
+
     }
 }

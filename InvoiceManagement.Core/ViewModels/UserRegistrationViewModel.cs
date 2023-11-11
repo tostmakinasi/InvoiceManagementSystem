@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace InvoiceManagement.Core.ViewModels
 {
-    public class UserPreRegistrationViewModel
+    public class UserRegistrationViewModel
     {
 
         [Required(ErrorMessage = "İsim alanı zorunludur")]

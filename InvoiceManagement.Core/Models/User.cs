@@ -4,7 +4,7 @@ namespace InvoiceManagement.Core.Models
 {
     public class User : IdentityUser,IEntity
     {
-        public string FirsName { get; set; }
+        public string FirstName { get; set; }
         public string LastName { get; set; }
         public string IdentificationNumber { get; set; }
         public string CarLicensePlate { get; set; }

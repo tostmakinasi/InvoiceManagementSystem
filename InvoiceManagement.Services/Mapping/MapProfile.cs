@@ -14,12 +14,12 @@ namespace InvoiceManagement.Services.Mapping
 
             CreateMap<User, UserViewModel>()
                 .ForMember(x => x.Address, opt => opt.MapFrom(src => (src.ApartmentId != null && src.Apartment != null) ? $"{src.Apartment.Block} - Kat: {src.Apartment.FloorNumber}, Daire: {src.Apartment.ApartmentNumber}" : "Adres bilgisi mevcut değil"))
-                .ForMember(x=> x.FullName, opt=> opt.MapFrom(src => $"{src.FirsName} {src.LastName}"))
+                .ForMember(x=> x.FullName, opt=> opt.MapFrom(src => $"{src.FirstName} {src.LastName}"))
                 .ForAllMembers(x=> x.NullSubstitute("-"));
 
-            CreateMap<UserPreRegistrationViewModel, User>()
-                .ForMember(x => x.UserName, opt => opt.MapFrom(src => (src.FirstName.ToLower().Replace(" ",string.Empty))))
-                .ForMember(x=> x.FirsName,opt=> opt.MapFrom(src => src.FirstName))
+            CreateMap<UserRegistrationViewModel, User>()
+                .ForMember(x => x.UserName, opt => opt.MapFrom(src => src.Email))
+                .ForMember(x=> x.FirstName,opt=> opt.MapFrom(src => src.FirstName))
                 .ForMember(x=> x.PhoneNumber,opt=> opt.MapFrom(src=> src.Phone));
                 
 
@@ -29,7 +29,7 @@ namespace InvoiceManagement.Services.Mapping
                 .ForMember(x=> x.IsAvailable, opt=> opt.MapFrom(src => src.IsAvailable ? "Boş" : "Dolu"))
                 .ForMember(x=> x.HouseType, opt=> opt.MapFrom(src => src.HouseType.Name))
                 .ForMember(dest => dest.InvoicesCount, opt => opt.MapFrom(src => src.Invoices.Count))
-                .ForMember(dest => dest.UserFullName, opt => opt.MapFrom(src => src.User != null ? $"{src.User.FirsName} {src.User.LastName}" : ""));
+                .ForMember(dest => dest.UserFullName, opt => opt.MapFrom(src => src.User != null ? $"{src.User.FirstName} {src.User.LastName}" : ""));
             CreateMap<Apartment, ApartmentSelectionListViewModel>()
                 .ForMember(x => x.AparmnentAddress, opt => opt.MapFrom(src => $"{src.Block}, Daire: {src.ApartmentNumber}"));
             CreateMap<Apartment, ApartmentCreateViewModel>().ReverseMap();

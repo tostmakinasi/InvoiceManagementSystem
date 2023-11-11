@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewData["Title"] = "SignIn";
+}
+@model SignInViewModel
+@section Scripts{
+    @*Bu sicript sayesinde *@
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h1>Kullanıcı Giriş</h1>
+        <div asp-validation-summary=ModelOnly class="alert alert-danger" role="alert">
+        </div>
+        <form method="post">
+            @*asp-controller="Home" asp-action="SignIn" asp-route-returnUrl ="@Context.Request.Query["returnUrl"]"*@
+
+            <div class=" mb-3">
+                <label for="Email" class="col-md-12 col-form-label" asp-for="Email">Email Adresi :</label>
+                <div class="col-md-12">
+                    <input asp-for="Email" class="form-control">
+                    <span class="text-danger" asp-validation-for="Email"></span>
+                </div>
+            </div>
+
+            <div class=" mb-3">
+                <label for="Password" class="col-md-4 col-form-label" asp-for="Password"></label>
+                <div class="col-md-12">
+                    <input asp-for="Password" class="form-control" type="password">
+                    <span class="text-danger" asp-validation-for="Password"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3 ">
+                <div class="col-md-6">
+                    <input asp-for="RememberMe" class="form-check-input">
+                    <label asp-for="RememberMe" class="form-check-label">Beni Hatırla</label>
+                </div>
+
+                <div class="col-md-6 ">
+                    <a class="float-end text-decoration-none" asp-controller="Home" asp-action="ForgetPassword">Şifremi Unuttum</a>
+                </div>
+            </div>
+
+
+
+            <div class=" mb-3">
+
+                <div class="col-md-4 ">
+                    <button type="submit" class="btn btn-primary">Giriş Yap</button>
+                </div>
+            </div>
+
+
+        </form>
+
+    </div>
+</div>
+
